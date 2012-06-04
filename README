@@ -17,6 +17,6 @@ Example output:
 
 Good to know:
 
-If you have a Guardfile and run guard with bundle exec, you might want to escape it when running non-rails specs. Do this by clearning RUBYOPT.
+If you have a Guardfile and run guard with bundle exec, you might want to escape it when running non-rails specs. You can do this by clearing RUBYOPT.
 
     RUBYOPT='' rspec unit/...
