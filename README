@@ -14,3 +14,9 @@ Example output:
   Real	0m0.596s
   User	0m0.518s
   Sys	0m0.075s
+
+Good to know:
+
+If you have a Guardfile and run guard with bundle exec, you might want to escape it when running non-rails specs. Do this by clearning RUBYOPT.
+
+    RUBYOPT='' rspec unit/...
