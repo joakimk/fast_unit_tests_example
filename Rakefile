@@ -1,24 +1,25 @@
 #!/usr/bin/env rake
 
-if ARGV.first == 'spec:unit'
-  namespace :spec do
-    task :unit do
-      # simulate a large test suite
-      unless File.exists?("unit/example_copy0_spec.rb")
-        puts "Making a few spec files (only on first run), may take a few seconds..."
-        499.times do |i|
-          system("cp unit/example_spec.rb unit/example_copy#{i}_spec.rb")
-        end
-      end
+require File.expand_path('../lib/tasks/no_rails', __FILE__)
 
-      spec_helper_path = File.expand_path("unit/spec_helper.rb")
-      system("rspec", "-r#{spec_helper_path}", *Dir["unit/**/*_spec.rb"]) || exit(1)
-    end
+# Try to run no-rails rake tasks first and fallback to rails when none is found.
+app = Rake.application
 
+def app.top_level
+  if running_a_task? && requested_tasks_exist?
+    super
+  else
+    puts "Rakefile says: If this was a rails app, we would load its rake tasks here."
+    #require File.expand_path('../config/application', __FILE__)
+    #App::Application.load_tasks
+    super
   end
-else
-  # If this was actually a rails app, you would load rails rake tasks here like this.
-  #require File.expand_path('../config/application', __FILE__)
+end
 
-  #App::Application.load_tasks
+def app.running_a_task?
+  !(options.show_tasks || options.show_prereqs)
+end
+
+def app.requested_tasks_exist?
+  top_level_tasks.any? { |task| Rake.application.lookup(task) }
 end
