@@ -1,16 +1,40 @@
 #!/usr/bin/env rake
 
-require File.expand_path('../lib/tasks/no_rails', __FILE__)
+# Load all non-rails tasks.
+path = File.expand_path('../lib/tasks/no_rails', __FILE__)
+Dir.entries(path).each do |file|
+  next unless file.include?('.rb')
+  require File.join(path, file)
+end
 
-# Try to run no-rails rake tasks first and fallback to rails when none is found.
+# Try to run no-rails tasks first. Fallback to rails if none is found.
+module LoadRailsTasks
+  def self.load
+    puts "Rakefile says: If this was a rails app, we would load its rake tasks here."
+    #require File.expand_path('../config/application', __FILE__)
+    #App::Application.load_tasks
+  end
+end
+
 Rake.application.instance_eval do
+  module Rake
+    class Task
+      alias :old_lookup_prerequisite :lookup_prerequisite
+
+      def lookup_prerequisite(prerequisite_name)
+        if prerequisite_name == "environment" && !Rake.application.lookup(prerequisite_name)
+          LoadRailsTasks.load
+        end
+        old_lookup_prerequisite(prerequisite_name)
+      end
+    end
+  end
+
   def top_level
     if running_a_task? && requested_tasks_exist?
       super
     else
-      puts "Rakefile says: If this was a rails app, we would load its rake tasks here."
-      #require File.expand_path('../config/application', __FILE__)
-      #App::Application.load_tasks
+      LoadRailsTasks.load
       super
     end
   end
