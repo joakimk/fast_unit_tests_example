@@ -1,11 +1,7 @@
 #!/usr/bin/env rake
 
 # Load all non-rails tasks.
-path = File.expand_path('../lib/tasks/no_rails', __FILE__)
-Dir.entries(path).each do |file|
-  next unless file.include?('.rb')
-  require File.join(path, file)
-end
+require File.expand_path('../lib/tasks/no_rails.rb', __FILE__)
 
 # Try to run no-rails tasks first. Fallback to rails if none is found.
 module LoadRailsTasks
