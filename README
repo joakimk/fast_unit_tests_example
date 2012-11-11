@@ -15,7 +15,7 @@ Example output:
   User	0m0.518s
   Sys	0m0.075s
 
-## Bundler
+Bundler:
 
 Waiting for bundler to boot can add seconds to your unit test run, especially when it adds up ("bundle exec rake" runs "bundle exec rspec" ...).
 
