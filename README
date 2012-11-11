@@ -15,8 +15,15 @@ Example output:
   User	0m0.518s
   Sys	0m0.075s
 
-Good to know:
+## Bundler
+
+Waiting for bundler to boot can add seconds to your unit test run, especially when it adds up ("bundle exec rake" runs "bundle exec rspec" ...).
 
 If you have a Guardfile and run guard with bundle exec, you might want to escape it when running non-rails specs. You can do this by clearing RUBYOPT.
 
     RUBYOPT='' rspec unit/...
+
+If "time rake --version" takes more than about 300 ms:
+
+* Try using NOEXEC_DISABLE=1 (you can read more about it at https://github.com/mpapis/rubygems-bundler/blob/master/README.md).
+* Check that you don't have any zsh plugin or simular that automatically runs bundle exec for rake.
