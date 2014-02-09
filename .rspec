@@ -1,0 +1,9 @@
+--color
+
+<%
+  # This is a hack so that e.g. 'rake unit/'
+  # will get the unit/spec_helper.
+%>
+<% if ARGV.any? { |arg| arg.include?('unit/') } %>
+-r <%= Dir.pwd %>/unit/load_paths.rb
+<% end %>

@@ -1,4 +1,5 @@
-require 'example'
+require "spec_helper"
+require "example"
 
 describe Example, "hello" do
   it "should return a formatted greeting" do
