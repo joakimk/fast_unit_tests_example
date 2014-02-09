@@ -17,7 +17,17 @@ An example of how you can create a separate suite of tests within a rails applic
     User        0m0.518s
     Sys         0m0.075s
 
-## Bundler
+
+## Rails
+
+When you run a raketask that the non-rails code does not load a callback in Rakefile will be triggered. Edit this to load the particular applciation.
+
+    rake stats --trace
+
+    # Rakefile says: If this was a rails app, we would load its rake tasks here.
+    # ...fast_unit_tests_example/Rakefile:20...
+
+## Bundler gotchas
 
 Waiting for bundler to boot can add seconds to your unit test run, especially when it adds up ("bundle exec rake" runs "bundle exec rspec" ...).
 
@@ -29,12 +39,3 @@ If "time rake --version" takes more than about 100 ms:
 
 * Try using NOEXEC_DISABLE=1 (you can read more about it at https://github.com/mpapis/rubygems-bundler/blob/master/README.md).
 * Check that you don't have any zsh plugin or similar that automatically runs bundle exec for rake.
-
-## Rails
-
-When you run a raketask that the non-rails code does not load a callback in Rakefile will be triggered. Edit this to load the particular applciation.
-
-    rake stats --trace
-
-    # Rakefile says: If this was a rails app, we would load its rake tasks here.
-    # ...fast_unit_tests_example/Rakefile:20...
