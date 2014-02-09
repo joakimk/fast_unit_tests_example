@@ -28,7 +28,7 @@ If you have a Guardfile and run guard with bundle exec, you might want to escape
 If "time rake --version" takes more than about 100 ms:
 
 * Try using NOEXEC_DISABLE=1 (you can read more about it at https://github.com/mpapis/rubygems-bundler/blob/master/README.md).
-* Check that you don't have any zsh plugin or simular that automatically runs bundle exec for rake.
+* Check that you don't have any zsh plugin or similar that automatically runs bundle exec for rake.
 
 ## Rails
 
