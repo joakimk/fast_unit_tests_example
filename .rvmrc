@@ -1,1 +1,4 @@
-rvm ruby-1.9.3-p0@fast_unit_tests_example --create
+# Disabled auto-bundling, strips ~300ms from the runtime.
+export NOEXEC_DISABLE=1
+
+rvm ruby-1.9.3-p194@fast_unit_tests_example --create
