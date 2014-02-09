@@ -13,8 +13,8 @@ An example of how you can create a separate suite of tests within a rails applic
     Finished in 0.10109 seconds
     1000 examples, 0 failures
 
-    Real	0m0.596s
-    User	0m0.518s
+    Real        0m0.596s
+    User        0m0.518s
     Sys         0m0.075s
 
 ## Bundler
