@@ -7,7 +7,7 @@ An example of how you can create a separate suite of tests within a rails applic
     bundle
     rake spec:unit # will generate spec files to simulate a large test suite
 
-    $ time rake spec:unit
+    time rake spec:unit
     .............. etc.
 
     Finished in 0.10109 seconds
