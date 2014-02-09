@@ -5,9 +5,7 @@ An example of how you can create a separate suite of tests within a rails applic
 ## Usage
 
     bundle
-    rake spec:unit
-
-## Example output
+    rake spec:unit # will generate spec files to simulate a large test suite
 
     $ time rake spec:unit
     .............. etc.
@@ -35,8 +33,6 @@ If "time rake --version" takes more than about 100 ms:
 ## Rails
 
 When you run a raketask that the non-rails code does not load a callback in Rakefile will be triggered. Edit this to load the particular applciation.
-
-### Example
 
     rake stats --trace
 
