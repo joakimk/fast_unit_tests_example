@@ -1,6 +1,6 @@
 # About
 
-A example of how you can create a separate suite of tests within a rails application that tests code which does not depend on rails (so that you can have faster feedback cycles)
+An example of how you can create a separate suite of tests within a rails application that tests code which does not depend on rails (so that you can have faster feedback cycles)
 
 ## Usage
 
